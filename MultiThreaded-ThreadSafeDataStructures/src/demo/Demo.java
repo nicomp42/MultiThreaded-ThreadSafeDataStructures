@@ -22,11 +22,11 @@ public class Demo extends Thread {
         System.out.println("Thread #" + threadNumber + " starting...");
         for(int i = start; i <= end; i++) {
         	int tmp;
+        	
+        	// Somewhere in these 2 lines of code the logic will enter a race condition between threads.
         	tmp = target.get(i);
-        	if (tmp > 0) {
-        		try {sleep(1);} catch (Exception ex) {}
-        		target.set(i, -tmp);
-        	}
+    		target.set(i, tmp + 1);
+    		
  //       	try {sleep(1);} catch (Exception ex) {}
         }
         System.out.println("Thread #" + threadNumber + " complete.");

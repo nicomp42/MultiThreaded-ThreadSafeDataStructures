@@ -42,7 +42,7 @@ public class Main {
 		System.out.println("demo(): All threads are complete.");
 		int errorCount = 0;
 		for (int i = 0; i < limitPerThread * numThreads; i++) {
-			if (cannonFodder.get(i) != i) {errorCount++;}
+			if (cannonFodder.get(i) != numThreads) {errorCount++;}
 		}
 		System.out.println("demo(): Error count = " + errorCount);
 	}
@@ -50,11 +50,12 @@ public class Main {
 	 * 4 threads used to initialize an ArrayList. Each thread processes all of the ArrayList and it doesn't work so well.
 	 */
 	public static void demoNotThreadSafe() {
+		int numThreads = 4;
 		ArrayList<Integer> cannonFodder = new ArrayList<Integer>();
 		/* The work is nicely divided up between the 4 threads. */
 		int limit = 4_000_000;
 		for (int i = 0; i < limit; i++) {
-			cannonFodder.add(i);
+			cannonFodder.add(0);
 		}
 		System.out.println("demoNotThreadSafe(): ArrayList initialized");
 
@@ -77,7 +78,7 @@ public class Main {
 		System.out.println("demoNotThreadSafe(): All threads are complete.");
 		int errorCount = 0;
 		for (int i = 0; i < limit; i++) {
-			if (cannonFodder.get(i) != -i) {errorCount++;}
+			if (cannonFodder.get(i) != numThreads) {errorCount++;}
 		}
 		System.out.println("demoNotThreadSafe(): Error count = " + errorCount);
 	}
