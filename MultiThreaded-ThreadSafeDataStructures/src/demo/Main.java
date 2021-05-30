@@ -14,7 +14,7 @@ public class Main {
 	}
 	/**
 	 * 4 threads used to initialize an ArrayList. Each thread processes a chunk of the ArrayList and it works fine.
-	 * This works because, even though ArrayList is not thread-safe, the threads cannot overlap elements at the same time.
+	 * This works because, even though ArrayList is not thread-safe, the threads cannot access individual elements concurrently.
 	 * Another solution would be to use a thread-safe data structure or make our ArrayList thread-safe. 
 	 */
 	public static void demo() {
