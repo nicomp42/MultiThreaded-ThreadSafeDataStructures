@@ -20,7 +20,7 @@ public class Main {
 	public static void demo() {
 		List<Integer> cannonFodder = new ArrayList<Integer>();
 		/* The work is nicely divided up between the 4 threads. */
-		int limitPerThread = 4_000_000;
+		int limitPerThread = 1_000_000;
 		int numThreads = 4;
 		for (int i = 0; i < limitPerThread * numThreads; i++) {
 			cannonFodder.add(0);
