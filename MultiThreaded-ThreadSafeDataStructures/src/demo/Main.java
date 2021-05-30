@@ -4,6 +4,7 @@
 package demo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -13,9 +14,11 @@ public class Main {
 	}
 	/**
 	 * 4 threads used to initialize an ArrayList. Each thread processes a chunk of the ArrayList and it works fine.
+	 * This works because, even though ArrayList is not thread-safe, the threads cannot overlap elements at the same time.
+	 * Another solution would be to use a thread-safe data structure or make our ArrayList thread-safe. 
 	 */
 	public static void demo() {
-		ArrayList<Integer> cannonFodder = new ArrayList<Integer>();
+		List<Integer> cannonFodder = new ArrayList<Integer>();
 		/* The work is nicely divided up between the 4 threads. */
 		int limitPerThread = 4_000_000;
 		int numThreads = 4;
@@ -51,7 +54,7 @@ public class Main {
 	 */
 	public static void demoNotThreadSafe() {
 		int numThreads = 4;
-		ArrayList<Integer> cannonFodder = new ArrayList<Integer>();
+		List<Integer> cannonFodder = new ArrayList<Integer>();
 		/* The work is nicely divided up between the 4 threads. */
 		int limit = 4_000_000;
 		for (int i = 0; i < limit; i++) {

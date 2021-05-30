@@ -5,16 +5,17 @@
 package demo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Demo extends Thread {
 
     private int threadNumber, start, end, increment;
-    private ArrayList<Integer> target;
-    public Demo(int threadNumber, int start, int end, ArrayList<Integer> target, int increment) {
+    private List<Integer> target;
+    public Demo(int threadNumber, int start, int end, List<Integer> target, int increment) {
     	this.threadNumber = threadNumber;
     	this.start = start;
         this.end = end;			// This is a value.
-        this.target = target;	// This is a reference.
+        this.target = target;	// This is a reference. All threads are still using the same data structure.
         this.increment = increment;
     }
 
@@ -25,7 +26,7 @@ public class Demo extends Thread {
         	int tmp;
         	
         	// Somewhere in these 2 lines of code the logic will enter a race condition between threads.
-        	// All we're doing is incrementing the element in the ArrayList. 
+        	// All we're doing is incrementing the element in the data structure. 
         	tmp = target.get(i);
     		target.set(i, tmp + increment);
     		
