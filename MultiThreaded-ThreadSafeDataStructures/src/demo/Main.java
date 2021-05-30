@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		//demo();
+		demo();
 		demoNotThreadSafe();
 	}
 	/**
@@ -17,17 +17,17 @@ public class Main {
 	public static void demo() {
 		ArrayList<Integer> cannonFodder = new ArrayList<Integer>();
 		/* The work is nicely divided up between the 4 threads. */
-		int limitPerThread = 4000;
+		int limitPerThread = 4_000_000;
 		int numThreads = 4;
 		for (int i = 0; i < limitPerThread * numThreads; i++) {
 			cannonFodder.add(0);
 		}
-
+		int increment = numThreads;
 		Demo d1, d2, d3, d4;
-		d1 = new Demo(1,                  0,  limitPerThread      - 1, cannonFodder);
-		d2 = new Demo(2, limitPerThread    , (limitPerThread * 2) - 1, cannonFodder);
-		d3 = new Demo(3, limitPerThread * 2, (limitPerThread * 3) - 1, cannonFodder);
-		d4 = new Demo(4, limitPerThread * 3, (limitPerThread * 4) - 1, cannonFodder);
+		d1 = new Demo(1,                  0,  limitPerThread      - 1, cannonFodder, increment);
+		d2 = new Demo(2, limitPerThread    , (limitPerThread * 2) - 1, cannonFodder, increment);
+		d3 = new Demo(3, limitPerThread * 2, (limitPerThread * 3) - 1, cannonFodder, increment);
+		d4 = new Demo(4, limitPerThread * 3, (limitPerThread * 4) - 1, cannonFodder, increment);
 
 		d1.start();
 		d2.start();
@@ -58,12 +58,13 @@ public class Main {
 			cannonFodder.add(0);
 		}
 		System.out.println("demoNotThreadSafe(): ArrayList initialized");
+		int increment = 1;
 
 		Demo d1, d2, d3, d4;
-		d1 = new Demo(1,                  0,  limit - 1, cannonFodder);
-		d2 = new Demo(2,                  0,  limit - 1, cannonFodder);
-		d3 = new Demo(3,                  0,  limit - 1, cannonFodder);
-		d4 = new Demo(4,                  0,  limit - 1, cannonFodder);
+		d1 = new Demo(1,                  0,  limit - 1, cannonFodder, increment);
+		d2 = new Demo(2,                  0,  limit - 1, cannonFodder, increment);
+		d3 = new Demo(3,                  0,  limit - 1, cannonFodder, increment);
+		d4 = new Demo(4,                  0,  limit - 1, cannonFodder, increment);
 
 		d1.start();
 		d2.start();
